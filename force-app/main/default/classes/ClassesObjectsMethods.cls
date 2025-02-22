@@ -147,13 +147,15 @@ public with sharing class ClassesObjectsMethods {
      * @return The absolute value of the difference
      */
     public static Double calculateDifferenceOfSquares(Double a, Double b) {
-        // Square the input numbers using the Math.pow() function
+    // Square the input numbers using the Math.pow() function
+    Double squareA = Math.pow(a, 2);
+    Double squareB = Math.pow(b, 2);
 
-        // Calculate the absolute difference using Math.abs() function
+    // Calculate the absolute difference using Math.abs() function
+    Double difference = Math.abs(squareA - squareB);
 
-        // Return the result
-        return null; // Replace null with the variable you used to store the result
-    }
+    return difference;
+}
 
     /**
      * Question 7
@@ -323,21 +325,38 @@ public with sharing class ClassesObjectsMethods {
      * where you need to manipulate and manage person information.
      */
     public class Person {
-        // Declare private two instance variables - (TEXT) name and (Number) age
+        private String name;
+        private Integer age;// Declare private two instance variables - (TEXT) name and (Number) age
         
+        // No argument constructor
+        public Person(){
+        }
         // Constructor to initialize the name and age
+        public Person(String name, Integer age){
+            this.name = name;
+            this.age = age;
+        }
     
-        // Method introduceYourself that returns the details of the person        
-        // Return a string in the format "Hello, my name is <name> and I am <age> years old."
-        // For example, introduceYourself() should return a string like "Hello, my name is John Doe and I am 28 years old."
-
+        // Method introduceYourself that returns the details of the person     
+        public String introduceYourself(){
+            return 'Hello, my name is ' + name + ' and I am ' + age + ' years old.';   
+        }       
         // Getter method that returns the name of the person
-
+        public String getName(){
+            return this.name;
+        }
         // Getter method that returns the age of the person
-
+        public Integer getAge() {
+            return this.age;
+        }
         // Setter method that sets the name of the person
-
+        public void setName(String name) {
+            this.name = name;
+        }
         // Setter method that sets the age of the person
+        public void setAge(Integer age) {
+            this.age = age;
+        }
     }
 
     /**
@@ -350,15 +369,17 @@ public with sharing class ClassesObjectsMethods {
     public static List<String> personDetails() {
         List<String> results = new List<String>();
         // Create a new instance of Person class
+        Person coolGuy = new Person();
         // Name the person 'John Doe' and set the age to 28
-
+        coolGuy.setName('John Doe');
+        coolGuy.setAge(28);
         // Add the details of the person using the introduceYourself method
-
+        results.add(coolGuy.introduceYourself());
         // Get the name of the person using the getter method and add it to the list
-
+        results.add(coolGuy.getName());
         // Get the age of the person using the getter method and add it to the list
-        
-        return null; // Replace null with the variable you used to store the result
+        results.add(String.valueOf(coolGuy.getAge()));
+        return results; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -370,9 +391,9 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Person createPerson(String name, Integer age) {
         // Create a new instance of the Person class using the provided name and age
-        
+        Person coolestGuy = new Person(name, age);
         // Return the new instance of the Person class
-        return null; // Replace null with the variable you used to store the result
+        return coolestGuy; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -385,15 +406,16 @@ public with sharing class ClassesObjectsMethods {
      * @return A list of new Person objects.
      */
     public static List<Person> createMultiplePersons(List<String> names, Integer age) {
-
+        List<Person> perList = new List<Person>(); // List to store created Person objects
         // Loop through each name in the provided list of names
             // Create a new Person object for each name
-            
-            // Add the new Person object to the list of Person objects
-        
-        
+        for (Integer i = 0; i < names.size(); i++) {
+            Person newPerson = new Person(names[i], age);
+        // Add the new Person object to the list of Person objects
+        perList.add(newPerson);
+        }  
         // Return the list of Person objects
-        return null; // Replace null with the variable you used to store the result
+        return perList; // Replace null with the variable you used to store the result
     }
 
 
@@ -408,6 +430,12 @@ public with sharing class ClassesObjectsMethods {
      * @return The Person object of the older person.
      */
     public static Person getOlderPerson(Person person1, Person person2) {
-        return null; // Replace null with the variable you used to store the result
+    if (person1.getAge() > person2.getAge()) {
+        return person1;  // person1 is older
+        } else if (person2.getAge() > person1.getAge()) {
+        return person2;  // person2 is older
+        } else {
+        return person1;  // They are the same age, return either
+        }
     }
 }
