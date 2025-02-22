@@ -256,12 +256,16 @@ public with sharing class ClassesObjectsMethods {
         // Declare three public instance variables - title, author, pages
         public String title;// title
         public String author;// author
-        public String pages;// pages
+        public Integer pages;// pages
     
         // Book constructor to initialize the title and author
-        public Book() {
-            this.title = 'Funny Book Title';
-            this.author = 'Mark Deguisne';// Initialize the title and author
+        public Book(){
+
+        }
+
+        public Book(String title, String author) {
+            this.title = title;
+            this.author = author;// Initialize the title and author
         }
     
         // Method that returns the details of the book
@@ -279,12 +283,12 @@ public with sharing class ClassesObjectsMethods {
      * @return A string containing the details of the book.
      */
     public static String createAndGetBookDetails() {
-        // Create a Book object with title "A Brief History of Time" and author "Stephen Hawking"
+        Book newBook = new Book('A Brief History of Time', 'Stephen Hawking');// Create a Book object with title "A Brief History of Time" and author "Stephen Hawking"
 
-        // Call the getBookDetails method on the book object to get the details of the book
+        String bookDetails = newBook.getBookDetails();// Call the getBookDetails method on the book object to get the details of the book
 
         // Return the details of the book
-        return null; // Replace null with the variable you used to store the result
+        return bookDetails; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -296,20 +300,18 @@ public with sharing class ClassesObjectsMethods {
      * @param myBook1 The first book object.
      * @return return a list of books.
      */
-    public static List<Book> generateBookList(Book myBook1) {
-        // Create a list of books
+    public static List<Book> generateBookList(Book myBook1) {// Create a list of books
 
-        // Update the title and author of myBook1
+        myBook1.title = 'Harry Potter and the Chamber of Secrets';
+        myBook1.author = 'J.K. Rowling';
+        myBook1.pages = 352;
 
-        // Update the pages for myBook1 to 352
+        Book newerBook = new Book('A Brief History of Time', 'Stephen Hawking');// Create a new Book object with title "A Brief History of Time" and author "Stephen Hawking"
+        newerBook.pages = 256;
 
-        // Create a new Book object with title "A Brief History of Time" and author "Stephen Hawking"
+        List<Book> awesomeBooks = new List<Book>{ myBook1, newerBook};
 
-        // Update the pages for A Brief History of Time to 256
-
-        // Add the book to the list
-        
-        return null; // Replace null with the variable you used to store the result      
+        return awesomeBooks; // Replace null with the variable you used to store the result      
     }
 
 
